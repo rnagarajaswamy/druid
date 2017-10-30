@@ -1,6 +1,7 @@
 import pydruid
 from pylab import plt
 
+# connecting to druid
 query = PyDruid('http://10.107.1.31:8082', 'druid/v2')
 
 # Other packages and modules
