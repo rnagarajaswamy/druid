@@ -12,6 +12,7 @@ top = query.topn(
     threshold=25,
     aggregations={'edits': longsum('count')}
     
+    # filers
     #filter=(Dimension('user_lang') == 'en') & (Dimension('first_hashtag') == 'oscars') &
     #       (Dimension('user_time_zone') == 'Pacific Time (US & Canada)') &
     #       ~(Dimension('user_mention_name') == 'No Mention'),
