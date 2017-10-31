@@ -1,8 +1,19 @@
-import pydruid
+# importing packages
+from pydruid import *
+from pydruid.client import *
+from pylab import plt
+from pydruid.query import QueryBuilder
+from pydruid.utils.postaggregator import *
+from pydruid.utils.aggregators import *
+from pydruid.utils.filters import *
+from pydruid.client import *
 from pylab import plt
 
-query = PyDruid('http://10.107.1.31:8082', 'druid/v2')
+# connect to druid broker node
+#query = PyDruid('http://10.107.1.31:8082', 'druid/v2')
+query = PyDruid('http://192.168.8.104:8082', 'druid/v2')
 
+#constricting query
 top = query.topn(
     datasource='wikiticker',
     intervals='2015-09-12/2015-09-13',
@@ -20,5 +31,6 @@ top = query.topn(
     
 )
 
+# storing the output in object
 df = query.export_pandas()
 print(df)
