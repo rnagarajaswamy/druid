@@ -1,0 +1,167 @@
+class Query(collections.abc.MutableSequence)
+ |  Query objects are produced by PyDruid clients and can be used for exporting query results into TSV files or
+ |  pandas.DataFrame objects for subsequent analysis. They also hold information about the issued query.
+ |  
+ |  Query acts as a wrapper over raw result list of dictionaries.
+ |  
+ |  :ivar str result_json: JSON object representing a query result. Initial value: None
+ |  :ivar list result: Query result parsed into a list of dicts. Initial value: None
+ |  :ivar str query_type: Name of most recently run query, e.g., topN. Initial value: None
+ |  :ivar dict query_dict: JSON object representing the query. Initial value: None
+ |  
+ |  Method resolution order:
+ |      Query
+ |      collections.abc.MutableSequence
+ |      collections.abc.Sequence
+ |      collections.abc.Reversible
+ |      collections.abc.Collection
+ |      collections.abc.Sized
+ |      collections.abc.Iterable
+ |      collections.abc.Container
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __delitem__(self, index)
+ |  
+ |  __getitem__(self, index)
+ |  
+ |  __init__(self, query_dict, query_type)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  __len__(self)
+ |  
+ |  __setitem__(self, index, value)
+ |  
+ |  __str__(self)
+ |      Return str(self).
+ |  
+ |  export_pandas(self)
+ |      Export the current query result to a Pandas DataFrame object.
+ |      
+ |      :return: The DataFrame representing the query result
+ |      :rtype: DataFrame
+ |      :raise NotImplementedError:
+ |      
+ |      Example
+ |      
+ |      .. code-block:: python
+ |          :linenos:
+ |      
+ |              >>> top = client.topn(
+ |                      datasource='twitterstream',
+ |                      granularity='all',
+ |                      intervals='2013-10-04/pt1h',
+ |                      aggregations={"count": doublesum("count")},
+ |                      dimension='user_name',
+ |                      filter = Dimension('user_lang') == 'en',
+ |                      metric='count',
+ |                      threshold=2
+ |                  )
+ |      
+ |              >>> df = top.export_pandas()
+ |              >>> print df
+ |              >>>    count                 timestamp      user_name
+ |                  0      7  2013-10-04T00:00:00.000Z         user_1
+ |                  1      6  2013-10-04T00:00:00.000Z         user_2
+ |  
+ |  export_tsv(self, dest_path)
+ |      Export the current query result to a tsv file.
+ |      
+ |      :param str dest_path: file to write query results to
+ |      :raise NotImplementedError:
+ |      
+ |      Example
+ |      
+ |      .. code-block:: python
+ |          :linenos:
+ |      
+ |              >>> top = client.topn(
+ |                      datasource='twitterstream',
+ |                      granularity='all',
+ |                      intervals='2013-10-04/pt1h',
+ |                      aggregations={"count": doublesum("count")},
+ |                      dimension='user_name',
+ |                      filter = Dimension('user_lang') == 'en',
+ |                      metric='count',
+ |                      threshold=2
+ |                  )
+ |      
+ |              >>> top.export_tsv('top.tsv')
+ |              >>> !cat top.tsv
+ |              >>> count       user_name       timestamp
+ |                  7.0 user_1  2013-10-04T00:00:00.000Z
+ |                  6.0 user_2  2013-10-04T00:00:00.000Z
+ |  
+ |  insert(self, index, value)
+ |      S.insert(index, value) -- insert value before index
+ |  
+ |  parse(self, data)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __abstractmethods__ = frozenset()
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from collections.abc.MutableSequence:
+ |  
+ |  __iadd__(self, values)
+ |  
+ |  append(self, value)
+ |      S.append(value) -- append value to the end of the sequence
+ |  
+ |  clear(self)
+ |      S.clear() -> None -- remove all items from S
+ |  
+ |  extend(self, values)
+ |      S.extend(iterable) -- extend sequence by appending elements from the iterable
+ |  
+ |  pop(self, index=-1)
+ |      S.pop([index]) -> item -- remove and return item at index (default last).
+ |      Raise IndexError if list is empty or index is out of range.
+ |  
+ |  remove(self, value)
+ |      S.remove(value) -- remove first occurrence of value.
+ |      Raise ValueError if the value is not present.
+ |  
+ |  reverse(self)
+ |      S.reverse() -- reverse *IN PLACE*
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from collections.abc.Sequence:
+ |  
+ |  __contains__(self, value)
+ |  
+ |  __iter__(self)
+ |  
+ |  __reversed__(self)
+ |  
+ |  count(self, value)
+ |      S.count(value) -> integer -- return number of occurrences of value
+ |  
+ |  index(self, value, start=0, stop=None)
+ |      S.index(value, [start, [stop]]) -> integer -- return first index of value.
+ |      Raises ValueError if the value is not present.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods inherited from collections.abc.Reversible:
+ |  
+ |  __subclasshook__(C) from abc.ABCMeta
+ |      Abstract classes can override this to customize issubclass().
+ |      
+ |      This is invoked early on by abc.ABCMeta.__subclasscheck__().
+ |      It should return True, False or NotImplemented.  If it returns
+ |      NotImplemented, the normal algorithm is used.  Otherwise, it
+ |      overrides the normal algorithm (and the outcome is cached).
+
+None
