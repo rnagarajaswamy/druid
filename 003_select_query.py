@@ -10,7 +10,8 @@ from pydruid.client import *
 # code block starts here 
 try:
     # connecting to DRUID
-    client = PyDruid('http://192.168.8.104:8082', 'druid/v2')
+    #client = PyDruid('http://192.168.8.104:8082', 'druid/v2')
+    client = PyDruid('http://10.107.1.124:8082', 'druid/v2')
     
     # defining the query object and rules
     varSelect = client.select(
@@ -20,6 +21,7 @@ try:
             intervals=["2015-09-12/2015-09-13"], 
             paging_spec={'pagingIdentifies': {}, 'threshold': 5}            
     )
+    print("List length {0}".format(len(varSelect)))
     
     # print the values in query object
     for d in varSelect:
@@ -31,7 +33,8 @@ except Exception as e:
 
 ''' output
 {
-	'timestamp': '2015-09-12T00:46:58.771Z', 'result': 
+	'timestamp': '2015-09-12T00:46:58.771Z', 
+   'result': 
 	{
 		'pagingIdentifiers': {'wikiticker_2015-09-12T00:00:00.000Z_2015-09-13T00:00:00.000Z_2017-11-01T23:46:19.354Z': 4}, 
 		'dimensions': ['regionName'], 
