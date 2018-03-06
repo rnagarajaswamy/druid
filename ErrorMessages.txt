@@ -1,0 +1,25 @@
+001: When trying to map the dimnesion and metric in Grafana
+
+{
+  "error": "Unknown exception",
+  "errorMessage": "Instantiation of [simple type, class io.druid.query.spec.LegacySegmentSpec] value failed: The end instant must be greater than the start instant",
+  "errorClass": "com.fasterxml.jackson.databind.JsonMappingException",
+  "host": null,
+  "message": "Unknown exception"
+}
+	
+
+TypeError: Cannot read property 'valueOf' of undefined
+    at Object.a.calculateInterval (http://10.107.5.181:3000/public/build/app.8849fc3d424a44caa6fc.js:1:2750)
+    at e.calculateInterval (http://10.107.5.181:3000/public/build/0.7d03bf00820ec00459ae.js:7:17970)
+    at e.updateTimeRange (http://10.107.5.181:3000/public/build/0.7d03bf00820ec00459ae.js:7:17730)
+    at u (http://10.107.5.181:3000/public/build/vendor.2305a8e1d478628b1297.js:43:68722)
+    at http://10.107.5.181:3000/public/build/vendor.2305a8e1d478628b1297.js:43:69127
+    at f.$digest (http://10.107.5.181:3000/public/build/vendor.2305a8e1d478628b1297.js:43:74824)
+    at f.$apply (http://10.107.5.181:3000/public/build/vendor.2305a8e1d478628b1297.js:43:76638)
+    at HTMLInputElement.<anonymous> (http://10.107.5.181:3000/public/build/vendor.2305a8e1d478628b1297.js:43:148717)
+    at HTMLInputElement.dispatch (http://10.107.5.181:3000/public/build/vendor.2305a8e1d478628b1297.js:38:34743)
+    at HTMLInputElement.g.handle (http://10.107.5.181:3000/public/build/vendor.2305a8e1d478628b1297.js:38:32752)
+
+
+	

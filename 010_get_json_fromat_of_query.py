@@ -16,17 +16,19 @@ try:
     # defining the query object and rules
     top = query.topn(
                 datasource="wikiticker"
-                , granularity="hour"
+                , granularity="all"
                 , intervals=["2015-09-12/2015-09-13"]
                 , dimension="regionName"
                 , filter=~(Dimension("regionName") == None)
                 , aggregations={"edits":longsum("count")}
                 , metric="edits"
-                , threshold=1
+                , threshold=5
              )  
 
-    print(json.dumps(top.query_dict, indent=2))  
-
+    #print(json.dumps(top.query_dict, indent=2))  
+    print(top.result)
+    df = top.export_pandas()
+    print(df)
 except Exception as e:
     print("Error {0}".format(e))
 
